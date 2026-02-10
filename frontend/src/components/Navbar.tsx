@@ -2,9 +2,13 @@ import { useState } from "react";
 import { ToggleIconButton } from "./ToggleIconButton";
 import { NAVBAR_ICONS, type NavbarIcon } from "../type";
 
-export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeIcon, setActiveIcon] = useState<NavbarIcon | null>(null);
+type NavbarProps = {
+  onIconChange?: (icon: NavbarIcon) => void;
+};
+
+export const Navbar = ({ onIconChange }: NavbarProps) => {
+  const [isOpen, setIsOpen] = useState(true);
+  const [activeIcon, setActiveIcon] = useState<NavbarIcon>("grid_view");
   return (
     <nav className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200">
       <div
@@ -30,9 +34,10 @@ export const Navbar = () => {
             key={icon}
             icon={icon}
             isActive={activeIcon === icon}
-            onClick={() =>
-              setActiveIcon((prev) => (prev === icon ? null : icon))
-            }
+            onClick={() => {
+              setActiveIcon(icon);
+              onIconChange?.(icon);
+            }}
           />
         ))}
       </div>

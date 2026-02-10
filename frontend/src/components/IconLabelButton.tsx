@@ -14,7 +14,7 @@ export function IconLabelButton({
   title,
 }: IconLabelButtonProps) {
   const base =
-    "inline-flex items-center gap-1.5 border border-orange-500 rounded-sm px-2 py-1 text-orange-500 cursor-pointer";
+    "inline-flex items-center gap-1.5 text-orange-500 cursor-pointer";
 
   return (
     <button
